@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Notas Faturadas e Comissão</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Controle de Notas Faturadas</h1>
+    <p class="subtitle">Lance suas notas faturadas e acompanhe sua comissão fixa de 0,75%.</p>
+
+    <section class="card">
+      <h2>Nova nota fiscal</h2>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+      <form id="invoice-form" class="grid">
+        <label>
+          Número da nota
+          <input id="numeroNota" type="text" required placeholder="Ex.: NF-10235" />
+        </label>
+
+        <label>
+          Cliente
+          <input id="cliente" type="text" required placeholder="Ex.: Supermercado Bom Preço" />
+        </label>
+
+        <label>
+          Data do faturamento
+          <input id="dataFaturamento" type="date" required />
+        </label>
+
+        <label>
+          Valor faturado (R$)
+          <input id="valorFaturado" type="number" min="0" step="0.01" required placeholder="0,00" />
+        </label>
+
+        <label>
+          Comissão recebida?
+          <select id="comissaoRecebida" required>
+            <option value="nao" selected>Não</option>
+            <option value="sim">Sim</option>
+          </select>
+        </label>
+
+        <button type="submit">Salvar nota</button>
+      </form>
+    </section>
+
+    <section class="card resumo">
+      <h2>Resumo</h2>
+      <p class="hint">Comissão padrão aplicada: <strong>0,75%</strong></p>
+      <div class="stats">
+        <div>
+          <span>Total faturado</span>
+          <strong id="totalFaturado">R$ 0,00</strong>
+        </div>
+        <div>
+          <span>Comissão a receber (prevista)</span>
+          <strong id="totalComissaoPrevista">R$ 0,00</strong>
+        </div>
+        <div>
+          <span>Comissão recebida</span>
+          <strong id="totalComissaoRecebida">R$ 0,00</strong>
+        </div>
+        <div>
+          <span>Comissão pendente</span>
+          <strong id="totalComissaoPendente">R$ 0,00</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Notas cadastradas</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nota</th>
+              <th>Cliente</th>
+              <th>Data</th>
+              <th>Valor faturado</th>
+              <th>Comissão (0,75%)</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="invoices-body"></tbody>
+        </table>
+      </div>
+      <p id="empty-state">Nenhuma nota cadastrada ainda.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
